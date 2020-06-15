@@ -1,0 +1,63 @@
+﻿@page
+@model CRUD_Razor_2_1.Pages.BookList.IndexModel
+@{
+}
+
+
+
+<a href="/booklist/Create" class="btn btn-primary"> Create a Book</a>
+<br/>
+<br/>
+<form method="post">
+    @if (Model.Message != null)
+    {
+        <div class="alert alert-info alert-dismissible" role="alert">
+            <button type="button" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            @Model.Message
+        </div>
+    }
+
+    @if (Model.Books.Count() > 0)
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(m => m.Books.FirstOrDefault().Name)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Books.FirstOrDefault().Author)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Books.FirstOrDefault().ISBN)
+                </th>
+            </tr>
+            @foreach (var item in Model.Books)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.ISBN)
+            </td>
+            <td>
+               <button asp-page-handler="Delete" asp-route-Id="@item.Id" class="btn btn-danger">Delete</button>
+                <a asp-page="Edit" asp-route-Id=@item.Id  class="btn btn-success">Edit </a>
+            </td>
+        </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <div>
+            Books are not available!
+        </div>
+    }
+</form>

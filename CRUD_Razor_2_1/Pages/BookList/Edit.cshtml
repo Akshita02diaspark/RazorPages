@@ -1,0 +1,61 @@
+﻿@page
+@model CRUD_Razor_2_1.Pages.BookList.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Book</h1>
+<br>
+
+<div style="border:1px solid #bbb9b9; border-radius:10px;">
+    <form method="post">
+
+        <div class="row" style="padding-left:15px;padding-top:30px;">
+            <div class="form-group">
+                <input hidden asp-for="Book.Id" />
+                <div class="row" style="padding:30px">
+                    <div class="col-sm-1">
+                        <label asp-for="Book.Name"></label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input asp-for="Book.Name" class="form-control" />
+                        <span asp-validation-for=Book.Name le="color:red"></span>
+                    </div>
+                    <br />
+                    <div class="col-sm-1">
+                        <label asp-for="Book.ISBN"></label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input asp-for="Book.ISBN" class="form-control" />
+                        <span asp-validation-for=Book.ISBN style="color:red"></span>
+
+                    </div>
+                    <br />
+                    <div class="col-sm-1">
+                        <label asp-for="Book.Author"></label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input asp-for="Book.Author" class="form-control" />
+                        <span asp-validation-for=Book.Author style="color:red"></span>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary btn-sm" />
+                <a asp-page="index" class="btn btn-success btn-sm">Back to List</a>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
